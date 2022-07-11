@@ -1,0 +1,126 @@
+openapi: 3.0.0
+info:
+  description: Api Rpn calculator
+  version: 1.0.0-oas3
+  title: APIs RPN
+  termsOfService: '#'
+  contact:
+    email: habib@gmail.com
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
+paths:
+  '/rpn/stacks':
+    post:
+      tags:
+        - stack
+      summary: create stack
+      description: create stack
+      operationId: createStack
+      responses:
+        '200':
+          description: create stack
+          content:
+            application/json:
+              schema:
+                type: integer
+
+  '/rpn/stacks/{stackId}':
+    get:
+      tags:
+        - stack
+      summary: get  stack
+      description: GET stack
+      operationId: getStackById
+      parameters:
+        - name: stackId
+          in: path
+          description: ID of stack
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: return stack
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: number
+
+
+  '/rpn/stacks/{stackId}/add/{element}':
+    post:
+      tags:
+        - stack
+      summary: put an item on the stack
+      description: push a element to stack
+      operationId: addElement
+      parameters:
+        - name: stackId
+          in: path
+          description: ID of stack
+          required: true
+          schema:
+            type: integer
+        - name: element
+          in: path
+          description: ID of stack
+          required: true
+          schema:
+            type: number
+
+      responses:
+        '200':
+          description: succes
+
+
+  '/rpn/stacks/{stackId}/clear':
+    post:
+      tags:
+        - stack
+      summary: clean the stack
+      description: clean the stack
+      operationId: clear
+      parameters:
+        - name: stackId
+          in: path
+          description: stack id
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: success
+
+
+  '/rpn/stacks/{stackId}/op/{op}':
+    put:
+      tags:
+        - stack
+      summary:  perform the operation
+      description: perform the operation
+      operationId: compute
+      parameters:
+        - name: stackId
+          in: path
+          description: stack id
+          required: true
+          schema:
+            type: integer
+        - name: op
+          in: path
+          description: operator
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: success
+
+
+
